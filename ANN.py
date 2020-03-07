@@ -1,7 +1,5 @@
 # Artificial Neural Network
 
-import numpy as np
-import matplotlib.pyplot as plt
 import pandas as pd
 
 # Importing the dataset
@@ -40,8 +38,12 @@ import keras
 from keras.models import Sequential
 from keras.layers import Dense
 
+
+
 # Initialising the ANN
 classifier = Sequential()
+
+
 
 # Adding the input layer and the first hidden layer
 classifier.add(Dense(output_dim = 6, init = 'uniform', activation = 'relu', input_dim = 11))
@@ -50,13 +52,20 @@ classifier.add(Dense(output_dim = 6, init = 'uniform', activation = 'relu', inpu
 classifier.add(Dense(output_dim = 6, init = 'uniform', activation = 'relu'))
 
 # Adding the output layer
+# Output layer dimension needs to match y_train dimension
 classifier.add(Dense(output_dim = 1, init = 'uniform', activation = 'sigmoid'))
 
 # Compiling the ANN
 classifier.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
 
 # Fitting the ANN to the Training set
-classifier.fit(X_train, y_train, batch_size = 10, nb_epoch = 100)
+classifier.fit(X_train, y_train, batch_size = 10, epochs = 100)
+
+
+#Part 4 Evaluate
+results = classifier.evaluate(X_test,y_test)
+print('test loss, test acc:', results)
+
 
 # Part 3 - Making the predictions and evaluating the model
 
