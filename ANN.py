@@ -35,8 +35,7 @@ X_test = sc.transform(X_test)
 
 # Importing the Keras libraries and packages
 import keras
-from keras.models import Sequential
-from keras.layers import Dense
+from keras.models import Sequentialfrom keras.layers import Dense
 
 
 
