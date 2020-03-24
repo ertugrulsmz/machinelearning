@@ -3,7 +3,7 @@
 import pandas as pd
 
 # Importing the dataset
-dataset = pd.read_csv('csvfiles/Churn_Modelling.csv')
+dataset = pd.read_csv('../Machine_Learning/csvfiles/Churn_Modelling.csv')
 X = dataset.iloc[:, 3:13].values
 y = dataset.iloc[:, 13].values
 
@@ -34,8 +34,9 @@ X_test = sc.transform(X_test)
 # Part 2 - Now let's make the ANN!
 
 # Importing the Keras libraries and packages
-import keras
-from keras.models import Sequentialfrom keras.layers import Dense
+
+from keras.models import Sequential
+from keras.layers import Dense
 
 
 
