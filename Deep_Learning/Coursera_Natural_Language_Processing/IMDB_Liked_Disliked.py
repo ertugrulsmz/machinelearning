@@ -74,3 +74,27 @@ model.fit(padded, training_labels_final, epochs=num_epochs, validation_data=(tes
 e = model.layers[0]
 weights = e.get_weights()[0]
 print(weights.shape) # shape: (vocab_size, embedding_dim)
+
+#My Test Set by just an input
+mytestdata = np.array(["It was great, I liked it.","I hate it , disgusting!","Shit "])
+anotherword_index = tokenizer.word_index
+#print("another word index : ",anotherword_index)
+anothersequences = tokenizer.texts_to_sequences(mytestdata)
+print("another sequences : ",anothersequences)
+padded2 = pad_sequences(anothersequences,maxlen=120, truncating=trunc_type)
+#print("padded : ",padded2)
+another_prediction = model.predict(padded2)
+
+#My Test Set results
+another_prediction_result = another_prediction > 0.5
+print(another_prediction)
+print(another_prediction_result)
+
+
+
+
+
+
+
+
+
