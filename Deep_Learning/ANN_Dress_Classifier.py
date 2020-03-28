@@ -1,5 +1,6 @@
 
 from tensorflow import keras
+from keras import layers,Sequential
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -10,16 +11,17 @@ data = keras.datasets.fashion_mnist
 label_names = ["T-shirt","Trouser","Pullover","Dress","Coat","Sandal","Shirt",
                "Sneaker","Bag","Ankle Boot"]
 
+
 train_images = train_images/255.0
 test_images = test_images/255.0
 
 
-model = keras.Sequential(
+model = Sequential(
     [
-        keras.layers.Flatten(input_shape=(28,28)),
-        keras.layers.Dense(128,activation ="relu"),
-        keras.layers.Dense(64,activation ="relu"),
-        keras.layers.Dense(10,activation="softmax")
+        layers.Flatten(input_shape=(28,28)),
+        layers.Dense(128,activation ="relu"),
+        layers.Dense(64,activation ="relu"),
+        layers.Dense(10,activation="softmax")
     ]
 )
 
