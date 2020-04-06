@@ -19,6 +19,14 @@ X[:,0] = labelencoder.fit_transform(X[:,0])
 onehotencoder = OneHotEncoder(categorical_features=[0])
 X = onehotencoder.fit_transform(X).toarray()
 
+#easy way to handle and see categorical variable.
+#x = df[['sepal_l', 'sepal_w', 'petal_l', 'petal_w']].values
+#dummies = pd.get_dummies(df['species']) #One hot Encoding ..
+#species = dummies.columns
+#y = dummies.values
+
+
+
 labelencoder_y = LabelEncoder()
 y = labelencoder.fit_transform(y)
 
