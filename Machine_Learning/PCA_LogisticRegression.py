@@ -21,12 +21,52 @@ sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
 
-# Applying PCA
+
+#Pca select the number of components
 from sklearn.decomposition import PCA
-pca = PCA(n_components = 2)
+pca = PCA().fit(X_train)
+import matplotlib.pyplot as plt
+plt.rcParams["figure.figsize"] = (12,6)
+
+fig, ax = plt.subplots()
+xi = np.arange(1, 14, step=1)
+y = np.cumsum(pca.explained_variance_ratio_)
+
+plt.ylim(0.0,1.1)
+plt.plot(xi, y, marker='o', linestyle='--', color='b')
+
+plt.xlabel('Number of Components')
+plt.xticks(np.arange(1, 14, step=1)) #change from 0-based array index to 1-based human-readable label
+plt.ylabel('Cumulative variance (%)')
+plt.title('The number of components needed to explain variance')
+
+plt.axhline(y=0.95, color='r', linestyle='-')
+plt.text(0.5, 0.85, '95% cut-off threshold', color = 'red', fontsize=16)
+
+ax.grid(axis='x')
+plt.show()
+
+
+
+# Applying PCA
+pca = PCA(n_components = 3)
 X_train = pca.fit_transform(X_train)
 X_test = pca.transform(X_test)
 explained_variance = pca.explained_variance_ratio_
+
+
+"""
+#95% of variance
+from sklearn.decomposition import PCA
+pca = PCA(n_components = 0.95)
+X_train = pca.fit_transform(X_train)
+X_test = pca.transform(X_test)
+explained_variance = pca.explained_variance_ratio_
+"""
+
+
+
+
 
 # Fitting Logistic Regression to the Training set
 from sklearn.linear_model import LogisticRegression
